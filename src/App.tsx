@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { InputForm } from './components/atoms/InputForm/index'
 
 function App() {
   const initTodos = [
@@ -13,9 +14,11 @@ function App() {
   const handleTaskInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setTodo(e.target.value);
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value);
 
-  const handleTaskAdd = (input: string) => {
-    if(input === '') return;
-    setTodos((todos) => [...todos, {task: todo }]);
+  const handleTaskAdd = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter' && todo !== '') {
+      setTodos((todos) => [...todos, {task: todo }]);
+      setTodo('');
+    }
   }
   const handleRemoveTask = (index: number) => {
     const newTodos = [...todos];
@@ -40,19 +43,14 @@ function App() {
           type="text" 
           placeholder="New Todo" 
           onChange={handleTaskInputChange} 
-          onKeyUp={e => {
-            if (e.key === 'Enter') {
-              handleTaskAdd(todo)
-            }
-          }}
+          onKeyUp={handleTaskAdd}
           />
       </section>
       <section>
-        <input 
-        value={searchInput}
-        type="text" 
-        placeholder="Search KeyWord" 
-        onChange={handleSearchInputChange}
+        <InputForm 
+          placeholder={"Search KeyWord"}
+          InputValue={searchInput}
+          handleChangeValue={handleSearchInputChange}
         />
       </section>
       <section>
