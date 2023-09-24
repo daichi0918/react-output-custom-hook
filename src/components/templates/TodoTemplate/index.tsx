@@ -3,6 +3,7 @@ import { InputForm } from '../../atoms/InputForm';
 import { AddTodo } from '../../organisms/AddTodo';
 import { TodoList } from '../../organisms/TodoList';
 import { INIT_TODO_LIST } from '../../../constants/data';
+import styles from './styles.module.css'
 
 export const TodoTemplate = () => {
   const [todos, setTodos] = useState(INIT_TODO_LIST);
@@ -32,23 +33,23 @@ export const TodoTemplate = () => {
   }
 
   return (
-    <div className="App">
-      <h1>Todo List</h1>
-      <section>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Todo List</h1>
+      <section className={styles.common}>
         <AddTodo 
           inputValue={todo}
           handleTaskInputChange={handleTaskInputChange}
           handleTaskAdd={handleTaskAdd}
         />
       </section>
-      <section>
+      <section className={styles.common}>
         <InputForm 
           placeholder={"Search KeyWord"}
           InputValue={searchInput}
           handleChangeValue={handleSearchInputChange}
         />
       </section>
-      <section>
+      <section className={styles.common}>
         <TodoList
           todoList={showTodoList}
           handleRemoveTask={handleRemoveTask} 

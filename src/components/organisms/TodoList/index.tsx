@@ -1,5 +1,6 @@
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from './styles.module.css';
 
 type Props = {
   todoList: () => { task: string }[];
@@ -10,13 +11,12 @@ export const TodoList = (props: Props) => {
   const { todoList, handleRemoveTask } = props;
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {todoList().map((todo: { task: string }, index: number) => (
         <div>
-          <li key={index}>
-            <span>{todo.task}</span>
-            {/* <button onClick={() => handleRemoveTask(index)}>X</button> */}
-            <div>
+          <li key={index} className={styles.todo}>
+            <span className={styles.task}>{todo.task}</span>
+            <div className={styles.far}>
               {/* https://www.digitalocean.com/community/tutorials/how-to-use-font-awesome-5-with-react-ja */}
               <FontAwesomeIcon
                 icon={faTrashAlt}

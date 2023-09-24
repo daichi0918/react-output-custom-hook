@@ -1,4 +1,5 @@
 import { InputForm }from '../../atoms/InputForm/index';
+import styles from './styles.module.css';
 
 type Props = {
   inputValue: string;
@@ -11,8 +12,8 @@ export const AddTodo = (props: Props) => {
 
   return (
     <>
-      <h2>{"ADD TODO"}</h2>
-      <InputForm 
+      <h2 className={styles.subTitle}>{"ADD TODO"}</h2>
+      <InputForm
         InputValue={inputValue}
         placeholder={"New Todo"}
         handleChangeValue={handleTaskInputChange}
