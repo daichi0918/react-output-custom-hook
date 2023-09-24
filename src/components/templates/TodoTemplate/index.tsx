@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import './App.css';
-import { InputForm } from './components/atoms/InputForm';
-import { AddTodo } from './components/organisms/AddTodo';
-import { TodoList } from './components/organisms/TodoList';
+import { InputForm } from '../../atoms/InputForm';
+import { AddTodo } from '../../organisms/AddTodo';
+import { TodoList } from '../../organisms/TodoList';
+import { INIT_TODO_LIST } from '../../../constants/data';
 
-function App() {
-  const initTodos = [
-    {task: 'Todo1'},
-    {task: 'Todo2'}
-  ]
-  const [todos, setTodos] = useState(initTodos);
+export const TodoTemplate = () => {
+  const [todos, setTodos] = useState(INIT_TODO_LIST);
   const [todo, setTodo] = useState('');
   const [searchInput, setSearchInput] =useState('');
 
@@ -61,5 +57,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

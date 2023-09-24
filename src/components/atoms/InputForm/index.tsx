@@ -3,7 +3,7 @@ type Props = {
   InputValue: string;
   placeholder: string;
   handleChangeValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleKeyUp?: () => void;
+  handleKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 
