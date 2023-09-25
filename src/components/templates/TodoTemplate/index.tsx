@@ -1,36 +1,12 @@
-import React, { useState } from 'react';
 import { InputForm } from '../../atoms/InputForm';
 import { AddTodo } from '../../organisms/AddTodo';
 import { TodoList } from '../../organisms/TodoList';
-import { INIT_TODO_LIST } from '../../../constants/data';
+import { useTodo } from '../../../hooks/useTodo';
 import styles from './styles.module.css'
 
 export const TodoTemplate = () => {
-  const [todos, setTodos] = useState(INIT_TODO_LIST);
-  const [todo, setTodo] = useState('');
-  const [searchInput, setSearchInput] =useState('');
-
-  const handleTaskInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setTodo(e.target.value);
-  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value);
-
-  const handleTaskAdd = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if(e.key === 'Enter' && todo !== '') {
-      setTodos((todos) => [...todos, {task: todo }]);
-      setTodo('');
-    }
-  }
-  const handleRemoveTask = (index: number) => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
-  }
-
-  const showTodoList = () => {
-    return todos.filter((todo) => {
-      const regexp = new RegExp("^" + searchInput, "i");
-      return todo.task.match(regexp);
-    })
-  }
+  const {todo, searchInput, showTodoList, handleTaskInputChange, handleSearchInputChange, handleTaskAdd, handleRemoveTask} = useTodo();
+  
 
   return (
     <div className={styles.container}>
